@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Supervisor"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+
+                <h:commandButton action="#{supervisorController.prepareCreate}" value="Cadastrar Supervisor"/>
+                <br/>
+                <br/>
+
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:dataTable value="#{supervisorController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListSupervisorTitle_id}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.id}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="NOME"/>
+                        </f:facet>
+                        <h:outputText value="#{item.nome}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="EMAIL PRIMÁRIO}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.email1}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="EMAIL SECUNDÁRIO"/>
+                        </f:facet>
+                        <h:outputText value="#{item.email2}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="TELEFONE"/>
+                        </f:facet>
+                        <h:outputText value="#{item.tel}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="CELULAR"/>
+                        </f:facet>
+                        <h:outputText value="#{item.cel}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="ENDEREÇO"/>
+                        </f:facet>
+                        <h:outputText value="#{item.endereco}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="SITUAÇÃO"/>
+                        </f:facet>
+                        <h:outputText value="#{item.situacao}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="PROJETO"/>
+                        </f:facet>
+                        <h:outputText value="#{item.PROJETOid}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="ESCOLA"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idEscola}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="&nbsp;"/>
+                        </f:facet>
+                        <h:commandLink action="#{supervisorController.prepareView}" value="Exibir"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{supervisorController.prepareEdit}" value="editar"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{supervisorController.destroy}" value="Excluir"/>
+                    </h:column>
+                </h:dataTable>
+                <br/>
+                <br/>
+                <h:outputText escape="false" value="#{bundle.ListSupervisorEmpty}" rendered="#{supervisorController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{supervisorController.items.rowCount > 0}">
+                    <h:outputText value="#{supervisorController.pagination.pageFirstItem + 1}..#{supervisorController.pagination.pageLastItem + 1}/#{supervisorController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{supervisorController.previous}" value="#{bundle.Previous} #{supervisorController.pagination.pageSize}" rendered="#{supervisorController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{supervisorController.next}" value="#{bundle.Next} #{supervisorController.pagination.pageSize}" rendered="#{supervisorController.pagination.hasNextPage}"/>&nbsp;
+                </h:panelGroup>
+
+                <br />
+                
+                <h:commandButton action="/index" value="Voltar"/>
+                
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditAlunocolaboradorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditAlunocolaboradorLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{alunocolaboradorController.selected.id}" title="#{bundle.EditAlunocolaboradorTitle_id}" required="true" requiredMessage="#{bundle.EditAlunocolaboradorRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditAlunocolaboradorLabel_matricula}" for="matricula" />
+                    <h:inputText id="matricula" value="#{alunocolaboradorController.selected.matricula}" title="#{bundle.EditAlunocolaboradorTitle_matricula}" />
+                    <h:outputLabel value="#{bundle.EditAlunocolaboradorLabel_nome}" for="nome" />
+                    <h:inputText id="nome" value="#{alunocolaboradorController.selected.nome}" title="#{bundle.EditAlunocolaboradorTitle_nome}" />
+                    <h:outputLabel value="#{bundle.EditAlunocolaboradorLabel_email1}" for="email1" />
+                    <h:inputText id="email1" value="#{alunocolaboradorController.selected.email1}" title="#{bundle.EditAlunocolaboradorTitle_email1}" />
+                    <h:outputLabel value="#{bundle.EditAlunocolaboradorLabel_email2}" for="email2" />
+                    <h:inputText id="email2" value="#{alunocolaboradorController.selected.email2}" title="#{bundle.EditAlunocolaboradorTitle_email2}" />
+                    <h:outputLabel value="#{bundle.EditAlunocolaboradorLabel_tel}" for="tel" />
+                    <h:inputText id="tel" value="#{alunocolaboradorController.selected.tel}" title="#{bundle.EditAlunocolaboradorTitle_tel}" />
+                    <h:outputLabel value="#{bundle.EditAlunocolaboradorLabel_cel}" for="cel" />
+                    <h:inputText id="cel" value="#{alunocolaboradorController.selected.cel}" title="#{bundle.EditAlunocolaboradorTitle_cel}" />
+                    <h:outputLabel value="#{bundle.EditAlunocolaboradorLabel_endereco}" for="endereco" />
+                    <h:inputText id="endereco" value="#{alunocolaboradorController.selected.endereco}" title="#{bundle.EditAlunocolaboradorTitle_endereco}" />
+                    <h:outputLabel value="#{bundle.EditAlunocolaboradorLabel_situacao}" for="situacao" />
+                    <h:inputText id="situacao" value="#{alunocolaboradorController.selected.situacao}" title="#{bundle.EditAlunocolaboradorTitle_situacao}" />
+                </h:panelGrid>
+                <h:commandLink action="#{alunocolaboradorController.update}" value="#{bundle.EditAlunocolaboradorSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditAlunocolaboradorViewLink}"/>
+                <br />
+                <h:commandLink action="#{alunocolaboradorController.prepareList}" value="#{bundle.EditAlunocolaboradorShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditAlunocolaboradorIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
