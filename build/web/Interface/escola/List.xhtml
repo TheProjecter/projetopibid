@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Escola"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                
+                 <h:commandButton action="#{bolsistaController.prepareCreate}" value="Cadastrar Nova Escola" immediate="true"> 
+                </h:commandButton>  
+                <br />
+                <br />
+                <h:dataTable value="#{escolaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEscolaTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="NOME"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nome}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="ENDEREÇO"/>
+                            </f:facet>
+                            <h:outputText value="#{item.endereco}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="ESFERA"/>
+                            </f:facet>
+                            <h:outputText value="#{item.esfera}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="NOME DIRETOR"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nomeDiretor}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="NOME VICE DIRETOR MANHÃ"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nomeViceDiretorManha}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="NOME VICE DIRETOR TARDE"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nomeViceDiretorTarde}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="NOME VICE DIRETOR NOITE"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nomeViceDiretorNoite}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="TELEFONE"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tel}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="EMAIL ESCOLA"/>
+                            </f:facet>
+                            <h:outputText value="#{item.email}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="EMAIL DIRETOR"/>
+                            </f:facet>
+                            <h:outputText value="#{item.emaiDiretor}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="EMAIL VICE DIRETOR MANHÃ"/>
+                            </f:facet>
+                            <h:outputText value="#{item.emailViceManha}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="EMAIL VICE DIRETOR TARDE"/>
+                            </f:facet>
+                            <h:outputText value="#{item.emailViceTarde}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="EMAIL VICE DIRETOR NOITE"/>
+                            </f:facet>
+                            <h:outputText value="#{item.emailViceNoite}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="SITUAÇÃO"/>
+                            </f:facet>
+                            <h:outputText value="#{item.situacao}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{escolaController.prepareView}" value="Exibir"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{escolaController.prepareEdit}" value="Editar"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{escolaController.destroy}" value="Excluir"/>
+                        </h:column>
+                    </h:dataTable>
+                
+                <h:outputText escape="false" value="#{bundle.ListAlunocolaboradorEmpty}" rendered="#{alunocolaboradorController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{alunocolaboradorController.items.rowCount > 0}">
+                    <h:outputText value="#{alunocolaboradorController.pagination.pageFirstItem + 1}..#{alunocolaboradorController.pagination.pageLastItem + 1}/#{alunocolaboradorController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{alunocolaboradorController.previous}" value="#{bundle.Previous} #{alunocolaboradorController.pagination.pageSize}" rendered="#{alunocolaboradorController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{alunocolaboradorController.next}" value="#{bundle.Next} #{alunocolaboradorController.pagination.pageSize}" rendered="#{alunocolaboradorController.pagination.hasNextPage}"/>&nbsp;
+                </h:panelGroup>
+                <br />                
+                <br />
+                <h:commandButton action="/index" value="Voltar" immediate="true"> 
+                </h:commandButton>  
+                <!--<h:commandLink action="{escolaController.prepareCreate}" value="{bundle.ListEscolaCreateLink}"/> -->
+                <br />
+                <br />
+              <!--  <h:link outcome="/index" value="{bundle.ListEscolaIndexLink}"/> -->
+                
+                
+            </h:form>
+        </ui:define>    
+    </ui:composition>
+
+</html>

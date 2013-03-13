@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewProjetoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewProjetoLabel_id}"/>
+                    <h:outputText value="#{projetoController.selected.id}" title="#{bundle.ViewProjetoTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewProjetoLabel_nomeInstituicao}"/>
+                    <h:outputText value="#{projetoController.selected.nomeInstituicao}" title="#{bundle.ViewProjetoTitle_nomeInstituicao}"/>
+                    <h:outputText value="#{bundle.ViewProjetoLabel_titulo}"/>
+                    <h:outputText value="#{projetoController.selected.titulo}" title="#{bundle.ViewProjetoTitle_titulo}"/>
+                    <h:outputText value="#{bundle.ViewProjetoLabel_dataInicio}"/>
+                    <h:outputText value="#{projetoController.selected.dataInicio}" title="#{bundle.ViewProjetoTitle_dataInicio}"/>
+                    <h:outputText value="#{bundle.ViewProjetoLabel_dataConclusao}"/>
+                    <h:outputText value="#{projetoController.selected.dataConclusao}" title="#{bundle.ViewProjetoTitle_dataConclusao}"/>
+                    <h:outputText value="#{bundle.ViewProjetoLabel_cursoVinculado}"/>
+                    <h:outputText value="#{projetoController.selected.cursoVinculado}" title="#{bundle.ViewProjetoTitle_cursoVinculado}"/>
+                    <h:outputText value="#{bundle.ViewProjetoLabel_acaoPrevista}"/>
+                    <h:outputText value="#{projetoController.selected.acaoPrevista}" title="#{bundle.ViewProjetoTitle_acaoPrevista}"/>
+                    <h:outputText value="#{bundle.ViewProjetoLabel_resultadoPretendido}"/>
+                    <h:outputText value="#{projetoController.selected.resultadoPretendido}" title="#{bundle.ViewProjetoTitle_resultadoPretendido}"/>
+                    <h:outputText value="#{bundle.ViewProjetoLabel_atividade}"/>
+                    <h:outputText value="#{projetoController.selected.atividade}" title="#{bundle.ViewProjetoTitle_atividade}"/>
+                    <h:outputText value="#{bundle.ViewProjetoLabel_mesInicio}"/>
+                    <h:outputText value="#{projetoController.selected.mesInicio}" title="#{bundle.ViewProjetoTitle_mesInicio}"/>
+                    <h:outputText value="#{bundle.ViewProjetoLabel_mesFinal}"/>
+                    <h:outputText value="#{projetoController.selected.mesFinal}" title="#{bundle.ViewProjetoTitle_mesFinal}"/>
+                    <h:outputText value="#{bundle.ViewProjetoLabel_situacao}"/>
+                    <h:outputText value="#{projetoController.selected.situacao}" title="#{bundle.ViewProjetoTitle_situacao}"/>
+                    <h:outputText value="#{bundle.ViewProjetoLabel_proposta}"/>
+                    <h:outputText value="#{projetoController.selected.proposta}" title="#{bundle.ViewProjetoTitle_proposta}"/>
+                    <h:outputText value="#{bundle.ViewProjetoLabel_COORDENADORid}"/>
+                    <h:outputText value="#{projetoController.selected.COORDENADORid}" title="#{bundle.ViewProjetoTitle_COORDENADORid}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{projetoController.destroyAndView}" value="#{bundle.ViewProjetoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewProjetoEditLink}"/>
+                <br />
+                <h:commandLink action="#{projetoController.prepareCreate}" value="#{bundle.ViewProjetoCreateLink}" />
+                <br />
+                <h:commandLink action="#{projetoController.prepareList}" value="#{bundle.ViewProjetoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewProjetoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

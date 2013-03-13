@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditEscolaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditEscolaLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{escolaController.selected.id}" title="#{bundle.EditEscolaTitle_id}" required="true" requiredMessage="#{bundle.EditEscolaRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditEscolaLabel_nome}" for="nome" />
+                    <h:inputText id="nome" value="#{escolaController.selected.nome}" title="#{bundle.EditEscolaTitle_nome}" />
+                    <h:outputLabel value="#{bundle.EditEscolaLabel_endereco}" for="endereco" />
+                    <h:inputText id="endereco" value="#{escolaController.selected.endereco}" title="#{bundle.EditEscolaTitle_endereco}" />
+                    <h:outputLabel value="#{bundle.EditEscolaLabel_esfera}" for="esfera" />
+                    <h:inputText id="esfera" value="#{escolaController.selected.esfera}" title="#{bundle.EditEscolaTitle_esfera}" />
+                    <h:outputLabel value="#{bundle.EditEscolaLabel_nomeDiretor}" for="nomeDiretor" />
+                    <h:inputText id="nomeDiretor" value="#{escolaController.selected.nomeDiretor}" title="#{bundle.EditEscolaTitle_nomeDiretor}" />
+                    <h:outputLabel value="#{bundle.EditEscolaLabel_nomeViceDiretorManha}" for="nomeViceDiretorManha" />
+                    <h:inputText id="nomeViceDiretorManha" value="#{escolaController.selected.nomeViceDiretorManha}" title="#{bundle.EditEscolaTitle_nomeViceDiretorManha}" />
+                    <h:outputLabel value="#{bundle.EditEscolaLabel_nomeViceDiretorTarde}" for="nomeViceDiretorTarde" />
+                    <h:inputText id="nomeViceDiretorTarde" value="#{escolaController.selected.nomeViceDiretorTarde}" title="#{bundle.EditEscolaTitle_nomeViceDiretorTarde}" />
+                    <h:outputLabel value="#{bundle.EditEscolaLabel_nomeViceDiretorNoite}" for="nomeViceDiretorNoite" />
+                    <h:inputText id="nomeViceDiretorNoite" value="#{escolaController.selected.nomeViceDiretorNoite}" title="#{bundle.EditEscolaTitle_nomeViceDiretorNoite}" />
+                    <h:outputLabel value="#{bundle.EditEscolaLabel_tel}" for="tel" />
+                    <h:inputText id="tel" value="#{escolaController.selected.tel}" title="#{bundle.EditEscolaTitle_tel}" />
+                    <h:outputLabel value="#{bundle.EditEscolaLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{escolaController.selected.email}" title="#{bundle.EditEscolaTitle_email}" />
+                    <h:outputLabel value="#{bundle.EditEscolaLabel_emaiDiretor}" for="emaiDiretor" />
+                    <h:inputText id="emaiDiretor" value="#{escolaController.selected.emaiDiretor}" title="#{bundle.EditEscolaTitle_emaiDiretor}" />
+                    <h:outputLabel value="#{bundle.EditEscolaLabel_emailViceManha}" for="emailViceManha" />
+                    <h:inputText id="emailViceManha" value="#{escolaController.selected.emailViceManha}" title="#{bundle.EditEscolaTitle_emailViceManha}" />
+                    <h:outputLabel value="#{bundle.EditEscolaLabel_emailViceTarde}" for="emailViceTarde" />
+                    <h:inputText id="emailViceTarde" value="#{escolaController.selected.emailViceTarde}" title="#{bundle.EditEscolaTitle_emailViceTarde}" />
+                    <h:outputLabel value="#{bundle.EditEscolaLabel_emailViceNoite}" for="emailViceNoite" />
+                    <h:inputText id="emailViceNoite" value="#{escolaController.selected.emailViceNoite}" title="#{bundle.EditEscolaTitle_emailViceNoite}" />
+                    <h:outputLabel value="#{bundle.EditEscolaLabel_situacao}" for="situacao" />
+                    <h:inputText id="situacao" value="#{escolaController.selected.situacao}" title="#{bundle.EditEscolaTitle_situacao}" />
+                </h:panelGrid>
+                <h:commandLink action="#{escolaController.update}" value="#{bundle.EditEscolaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditEscolaViewLink}"/>
+                <br />
+                <h:commandLink action="#{escolaController.prepareList}" value="#{bundle.EditEscolaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditEscolaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

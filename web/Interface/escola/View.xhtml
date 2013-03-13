@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewEscolaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewEscolaLabel_id}"/>
+                    <h:outputText value="#{escolaController.selected.id}" title="#{bundle.ViewEscolaTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewEscolaLabel_nome}"/>
+                    <h:outputText value="#{escolaController.selected.nome}" title="#{bundle.ViewEscolaTitle_nome}"/>
+                    <h:outputText value="#{bundle.ViewEscolaLabel_endereco}"/>
+                    <h:outputText value="#{escolaController.selected.endereco}" title="#{bundle.ViewEscolaTitle_endereco}"/>
+                    <h:outputText value="#{bundle.ViewEscolaLabel_esfera}"/>
+                    <h:outputText value="#{escolaController.selected.esfera}" title="#{bundle.ViewEscolaTitle_esfera}"/>
+                    <h:outputText value="#{bundle.ViewEscolaLabel_nomeDiretor}"/>
+                    <h:outputText value="#{escolaController.selected.nomeDiretor}" title="#{bundle.ViewEscolaTitle_nomeDiretor}"/>
+                    <h:outputText value="#{bundle.ViewEscolaLabel_nomeViceDiretorManha}"/>
+                    <h:outputText value="#{escolaController.selected.nomeViceDiretorManha}" title="#{bundle.ViewEscolaTitle_nomeViceDiretorManha}"/>
+                    <h:outputText value="#{bundle.ViewEscolaLabel_nomeViceDiretorTarde}"/>
+                    <h:outputText value="#{escolaController.selected.nomeViceDiretorTarde}" title="#{bundle.ViewEscolaTitle_nomeViceDiretorTarde}"/>
+                    <h:outputText value="#{bundle.ViewEscolaLabel_nomeViceDiretorNoite}"/>
+                    <h:outputText value="#{escolaController.selected.nomeViceDiretorNoite}" title="#{bundle.ViewEscolaTitle_nomeViceDiretorNoite}"/>
+                    <h:outputText value="#{bundle.ViewEscolaLabel_tel}"/>
+                    <h:outputText value="#{escolaController.selected.tel}" title="#{bundle.ViewEscolaTitle_tel}"/>
+                    <h:outputText value="#{bundle.ViewEscolaLabel_email}"/>
+                    <h:outputText value="#{escolaController.selected.email}" title="#{bundle.ViewEscolaTitle_email}"/>
+                    <h:outputText value="#{bundle.ViewEscolaLabel_emaiDiretor}"/>
+                    <h:outputText value="#{escolaController.selected.emaiDiretor}" title="#{bundle.ViewEscolaTitle_emaiDiretor}"/>
+                    <h:outputText value="#{bundle.ViewEscolaLabel_emailViceManha}"/>
+                    <h:outputText value="#{escolaController.selected.emailViceManha}" title="#{bundle.ViewEscolaTitle_emailViceManha}"/>
+                    <h:outputText value="#{bundle.ViewEscolaLabel_emailViceTarde}"/>
+                    <h:outputText value="#{escolaController.selected.emailViceTarde}" title="#{bundle.ViewEscolaTitle_emailViceTarde}"/>
+                    <h:outputText value="#{bundle.ViewEscolaLabel_emailViceNoite}"/>
+                    <h:outputText value="#{escolaController.selected.emailViceNoite}" title="#{bundle.ViewEscolaTitle_emailViceNoite}"/>
+                    <h:outputText value="#{bundle.ViewEscolaLabel_situacao}"/>
+                    <h:outputText value="#{escolaController.selected.situacao}" title="#{bundle.ViewEscolaTitle_situacao}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{escolaController.destroyAndView}" value="#{bundle.ViewEscolaDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewEscolaEditLink}"/>
+                <br />
+                <h:commandLink action="#{escolaController.prepareCreate}" value="#{bundle.ViewEscolaCreateLink}" />
+                <br />
+                <h:commandLink action="#{escolaController.prepareList}" value="#{bundle.ViewEscolaShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewEscolaIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

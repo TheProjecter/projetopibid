@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Editar Coordenador"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="NOME" for="nome" />
+                    <h:inputText id="nome" value="#{coordenadorController.selected.nome}" title="#{bundle.EditCoordenadorTitle_nome}" required="true" requiredMessage="O NOME DEVE SER PREENCHIDO" />
+                    <h:outputLabel value="E-MAIL PRIMÁRIO" for="email1" />
+                    <h:inputText id="email1" value="#{coordenadorController.selected.email1}" title="#{bundle.EditCoordenadorTitle_email1}" />
+                    <h:outputLabel value="E-MAIL SECUNDÁRIO" for="email2" />
+                    <h:inputText id="email2" value="#{coordenadorController.selected.email2}" title="#{bundle.EditCoordenadorTitle_email2}" />
+                    <h:outputLabel value="TELEFONE" for="tel" />
+                    <h:inputText id="tel" value="#{coordenadorController.selected.tel}" title="#{bundle.EditCoordenadorTitle_tel}" />
+                    <h:outputLabel value="CELULAR" for="cel" />
+                    <h:inputText id="cel" value="#{coordenadorController.selected.cel}" title="#{bundle.EditCoordenadorTitle_cel}" />
+                    <h:outputLabel value="LINK" for="link" />
+                    <h:inputText id="link" value="#{coordenadorController.selected.link}" title="#{bundle.EditCoordenadorTitle_link}" />
+                </h:panelGrid>
+                <!--<h:commandLink action="{coordenadorController.update}" value="{bundle.EditCoordenadorSaveLink}"/>-->
+                <br />
+                  <h:commandButton action="#{coordenadorController.update}" value="Salvar"> 
+              
+               </h:commandButton>
+         
+                 <h:commandButton action="View" value="Exibir"> 
+              
+               </h:commandButton>
+                <!--<h:link outcome="View" value="{bundle.EditCoordenadorViewLink}"/>-->
+               
+                <h:commandButton action="#{coordenadorController.prepareList}" value="Exibir Todos"> 
+              
+                </h:commandButton>
+                <br />
+              <!--  <h:commandLink action="{coordenadorController.prepareList}" value="{bundle.EditCoordenadorShowAllLink}" immediate="true"/>-->
+                <br />
+                <br />
+                <h:commandButton action="/index" value="Voltar"> 
+              
+                </h:commandButton>
+       
+                <!--<h:link outcome="/index" value="{bundle.EditCoordenadorIndexLink}" />-->
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

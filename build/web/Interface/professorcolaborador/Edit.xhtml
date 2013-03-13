@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Editar Professor Colaborador"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="NOME" for="nome" />
+                    <h:inputText id="nome" value="#{professorcolaboradorController.selected.nome}" title="#{bundle.EditProfessorcolaboradorTitle_nome}" />
+                    <h:outputLabel value="E-MAIL PRIMÁRIO" for="email1" />
+                    <h:inputText id="email1" value="#{professorcolaboradorController.selected.email1}" title="#{bundle.EditProfessorcolaboradorTitle_email1}" />
+                    <h:outputLabel value="E-MAIL SECUNDÁRIO" for="email2" />
+                    <h:inputText id="email2" value="#{professorcolaboradorController.selected.email2}" title="#{bundle.EditProfessorcolaboradorTitle_email2}" />
+                    <h:outputLabel value="TELEFONE" for="tel" />
+                    <h:inputText id="tel" value="#{professorcolaboradorController.selected.tel}" title="#{bundle.EditProfessorcolaboradorTitle_tel}" />
+                    <h:outputLabel value="CELULAR" for="cel" />
+                    <h:inputText id="cel" value="#{professorcolaboradorController.selected.cel}" title="#{bundle.EditProfessorcolaboradorTitle_cel}" />
+                    <h:outputLabel value="ENDEREÇO" for="endereco" />
+                    <h:inputText id="endereco" value="#{professorcolaboradorController.selected.endereco}" title="#{bundle.EditProfessorcolaboradorTitle_endereco}" />
+                    <h:outputLabel value="INSTITUIÇÃO" for="instituicao" />
+                    <h:inputText id="instituicao" value="#{professorcolaboradorController.selected.instituicao}" title="#{bundle.EditProfessorcolaboradorTitle_instituicao}" />
+                    <h:outputLabel value="SITUAÇÃO" for="situacao" />
+                    <h:inputText id="situacao" value="#{professorcolaboradorController.selected.situacao}" title="#{bundle.EditProfessorcolaboradorTitle_situacao}" />
+                </h:panelGrid>
+                <h:commandLink action="#{professorcolaboradorController.update}" value="Salvar"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="Exibir"/>
+                <br />
+                <h:commandLink action="#{professorcolaboradorController.prepareList}" value="Exibir Todos" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="Voltar" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
