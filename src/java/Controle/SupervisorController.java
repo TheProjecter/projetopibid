@@ -3,7 +3,7 @@ package Controle;
 import Entidade.Supervisor;
 import Controle.util.JsfUtil;
 import Controle.util.PaginationHelper;
-import Bean.SupervisorFacade;
+import Beans.SupervisorFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -25,7 +25,7 @@ public class SupervisorController implements Serializable {
     private Supervisor current;
     private DataModel items = null;
     @EJB
-    private Bean.SupervisorFacade ejbFacade;
+    private Beans.SupervisorFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 

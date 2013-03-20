@@ -13,10 +13,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -24,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Marinho
+ * @author jp
  */
 @Entity
 @Table(name = "supervisor")
@@ -37,8 +38,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Supervisor.findByEmail2", query = "SELECT s FROM Supervisor s WHERE s.email2 = :email2"),
     @NamedQuery(name = "Supervisor.findByTel", query = "SELECT s FROM Supervisor s WHERE s.tel = :tel"),
     @NamedQuery(name = "Supervisor.findByCel", query = "SELECT s FROM Supervisor s WHERE s.cel = :cel"),
-    @NamedQuery(name = "Supervisor.findByEndereco", query = "SELECT s FROM Supervisor s WHERE s.endereco = :endereco"),
-    @NamedQuery(name = "Supervisor.findBySituacao", query = "SELECT s FROM Supervisor s WHERE s.situacao = :situacao")})
+    @NamedQuery(name = "Supervisor.findByEndereco", query = "SELECT s FROM Supervisor s WHERE s.endereco = :endereco")})
 public class Supervisor implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -64,16 +64,20 @@ public class Supervisor implements Serializable {
     @Size(max = 45)
     @Column(name = "endereco")
     private String endereco;
-    @Column(name = "situacao")
-    private Boolean situacao;
+    @JoinTable(name = "supervisor_tarefa", joinColumns = {
+        @JoinColumn(name = "supervisor_id", referencedColumnName = "id")}, inverseJoinColumns = {
+        @JoinColumn(name = "tarefa_id", referencedColumnName = "id")})
+    @ManyToMany
+    private Collection<Tarefa> tarefaCollection;
+    @JoinColumn(name = "TipoSituacao_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Tiposituacao tipoSituacaoid;
     @JoinColumn(name = "PROJETO_id", referencedColumnName = "id")
     @ManyToOne
     private Projeto pROJETOid;
     @JoinColumn(name = "idEscola", referencedColumnName = "id")
     @ManyToOne
     private Escola idEscola;
-    @OneToMany(mappedBy = "sUPERVISORid")
-    private Collection<Atividade> atividadeCollection;
 
     public Supervisor() {
     }
@@ -138,12 +142,21 @@ public class Supervisor implements Serializable {
         this.endereco = endereco;
     }
 
-    public Boolean getSituacao() {
-        return situacao;
+    @XmlTransient
+    public Collection<Tarefa> getTarefaCollection() {
+        return tarefaCollection;
     }
 
-    public void setSituacao(Boolean situacao) {
-        this.situacao = situacao;
+    public void setTarefaCollection(Collection<Tarefa> tarefaCollection) {
+        this.tarefaCollection = tarefaCollection;
+    }
+
+    public Tiposituacao getTipoSituacaoid() {
+        return tipoSituacaoid;
+    }
+
+    public void setTipoSituacaoid(Tiposituacao tipoSituacaoid) {
+        this.tipoSituacaoid = tipoSituacaoid;
     }
 
     public Projeto getPROJETOid() {
@@ -160,15 +173,6 @@ public class Supervisor implements Serializable {
 
     public void setIdEscola(Escola idEscola) {
         this.idEscola = idEscola;
-    }
-
-    @XmlTransient
-    public Collection<Atividade> getAtividadeCollection() {
-        return atividadeCollection;
-    }
-
-    public void setAtividadeCollection(Collection<Atividade> atividadeCollection) {
-        this.atividadeCollection = atividadeCollection;
     }
 
     @Override

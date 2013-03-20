@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -22,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Marinho
+ * @author jp
  */
 @Entity
 @Table(name = "escola")
@@ -42,8 +44,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Escola.findByEmaiDiretor", query = "SELECT e FROM Escola e WHERE e.emaiDiretor = :emaiDiretor"),
     @NamedQuery(name = "Escola.findByEmailViceManha", query = "SELECT e FROM Escola e WHERE e.emailViceManha = :emailViceManha"),
     @NamedQuery(name = "Escola.findByEmailViceTarde", query = "SELECT e FROM Escola e WHERE e.emailViceTarde = :emailViceTarde"),
-    @NamedQuery(name = "Escola.findByEmailViceNoite", query = "SELECT e FROM Escola e WHERE e.emailViceNoite = :emailViceNoite"),
-    @NamedQuery(name = "Escola.findBySituacao", query = "SELECT e FROM Escola e WHERE e.situacao = :situacao")})
+    @NamedQuery(name = "Escola.findByEmailViceNoite", query = "SELECT e FROM Escola e WHERE e.emailViceNoite = :emailViceNoite")})
 public class Escola implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -91,10 +92,11 @@ public class Escola implements Serializable {
     @Size(max = 45)
     @Column(name = "EmailViceNoite")
     private String emailViceNoite;
-    @Column(name = "situacao")
-    private Boolean situacao;
     @OneToMany(mappedBy = "idEscola")
     private Collection<Supervisor> supervisorCollection;
+    @JoinColumn(name = "TipoSituacao_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Tiposituacao tipoSituacaoid;
 
     public Escola() {
     }
@@ -215,14 +217,6 @@ public class Escola implements Serializable {
         this.emailViceNoite = emailViceNoite;
     }
 
-    public Boolean getSituacao() {
-        return situacao;
-    }
-
-    public void setSituacao(Boolean situacao) {
-        this.situacao = situacao;
-    }
-
     @XmlTransient
     public Collection<Supervisor> getSupervisorCollection() {
         return supervisorCollection;
@@ -230,6 +224,14 @@ public class Escola implements Serializable {
 
     public void setSupervisorCollection(Collection<Supervisor> supervisorCollection) {
         this.supervisorCollection = supervisorCollection;
+    }
+
+    public Tiposituacao getTipoSituacaoid() {
+        return tipoSituacaoid;
+    }
+
+    public void setTipoSituacaoid(Tiposituacao tipoSituacaoid) {
+        this.tipoSituacaoid = tipoSituacaoid;
     }
 
     @Override

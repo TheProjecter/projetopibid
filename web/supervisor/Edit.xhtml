@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditSupervisorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditSupervisorLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{supervisorController.selected.id}" title="#{bundle.EditSupervisorTitle_id}" required="true" requiredMessage="#{bundle.EditSupervisorRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditSupervisorLabel_nome}" for="nome" />
+                    <h:inputText id="nome" value="#{supervisorController.selected.nome}" title="#{bundle.EditSupervisorTitle_nome}" />
+                    <h:outputLabel value="#{bundle.EditSupervisorLabel_email1}" for="email1" />
+                    <h:inputText id="email1" value="#{supervisorController.selected.email1}" title="#{bundle.EditSupervisorTitle_email1}" />
+                    <h:outputLabel value="#{bundle.EditSupervisorLabel_email2}" for="email2" />
+                    <h:inputText id="email2" value="#{supervisorController.selected.email2}" title="#{bundle.EditSupervisorTitle_email2}" />
+                    <h:outputLabel value="#{bundle.EditSupervisorLabel_tel}" for="tel" />
+                    <h:inputText id="tel" value="#{supervisorController.selected.tel}" title="#{bundle.EditSupervisorTitle_tel}" />
+                    <h:outputLabel value="#{bundle.EditSupervisorLabel_cel}" for="cel" />
+                    <h:inputText id="cel" value="#{supervisorController.selected.cel}" title="#{bundle.EditSupervisorTitle_cel}" />
+                    <h:outputLabel value="#{bundle.EditSupervisorLabel_endereco}" for="endereco" />
+                    <h:inputText id="endereco" value="#{supervisorController.selected.endereco}" title="#{bundle.EditSupervisorTitle_endereco}" />
+                    <h:outputLabel value="#{bundle.EditSupervisorLabel_tipoSituacaoid}" for="tipoSituacaoid" />
+                    <h:selectOneMenu id="tipoSituacaoid" value="#{supervisorController.selected.tipoSituacaoid}" title="#{bundle.EditSupervisorTitle_tipoSituacaoid}" required="true" requiredMessage="#{bundle.EditSupervisorRequiredMessage_tipoSituacaoid}">
+                        <f:selectItems value="#{tiposituacaoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditSupervisorLabel_PROJETOid}" for="PROJETOid" />
+                    <h:selectOneMenu id="PROJETOid" value="#{supervisorController.selected.PROJETOid}" title="#{bundle.EditSupervisorTitle_PROJETOid}" >
+                        <f:selectItems value="#{projetoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditSupervisorLabel_idEscola}" for="idEscola" />
+                    <h:selectOneMenu id="idEscola" value="#{supervisorController.selected.idEscola}" title="#{bundle.EditSupervisorTitle_idEscola}" >
+                        <f:selectItems value="#{escolaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{supervisorController.update}" value="#{bundle.EditSupervisorSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditSupervisorViewLink}"/>
+                <br />
+                <h:commandLink action="#{supervisorController.prepareList}" value="#{bundle.EditSupervisorShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditSupervisorIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

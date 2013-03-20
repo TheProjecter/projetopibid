@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewProfessorcolaboradorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewProfessorcolaboradorLabel_id}"/>
+                    <h:outputText value="#{professorcolaboradorController.selected.id}" title="#{bundle.ViewProfessorcolaboradorTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewProfessorcolaboradorLabel_nome}"/>
+                    <h:outputText value="#{professorcolaboradorController.selected.nome}" title="#{bundle.ViewProfessorcolaboradorTitle_nome}"/>
+                    <h:outputText value="#{bundle.ViewProfessorcolaboradorLabel_email1}"/>
+                    <h:outputText value="#{professorcolaboradorController.selected.email1}" title="#{bundle.ViewProfessorcolaboradorTitle_email1}"/>
+                    <h:outputText value="#{bundle.ViewProfessorcolaboradorLabel_email2}"/>
+                    <h:outputText value="#{professorcolaboradorController.selected.email2}" title="#{bundle.ViewProfessorcolaboradorTitle_email2}"/>
+                    <h:outputText value="#{bundle.ViewProfessorcolaboradorLabel_tel}"/>
+                    <h:outputText value="#{professorcolaboradorController.selected.tel}" title="#{bundle.ViewProfessorcolaboradorTitle_tel}"/>
+                    <h:outputText value="#{bundle.ViewProfessorcolaboradorLabel_cel}"/>
+                    <h:outputText value="#{professorcolaboradorController.selected.cel}" title="#{bundle.ViewProfessorcolaboradorTitle_cel}"/>
+                    <h:outputText value="#{bundle.ViewProfessorcolaboradorLabel_endereco}"/>
+                    <h:outputText value="#{professorcolaboradorController.selected.endereco}" title="#{bundle.ViewProfessorcolaboradorTitle_endereco}"/>
+                    <h:outputText value="#{bundle.ViewProfessorcolaboradorLabel_instituicao}"/>
+                    <h:outputText value="#{professorcolaboradorController.selected.instituicao}" title="#{bundle.ViewProfessorcolaboradorTitle_instituicao}"/>
+                    <h:outputText value="#{bundle.ViewProfessorcolaboradorLabel_tipoSituacaoid}"/>
+                    <h:outputText value="#{professorcolaboradorController.selected.tipoSituacaoid}" title="#{bundle.ViewProfessorcolaboradorTitle_tipoSituacaoid}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{professorcolaboradorController.destroyAndView}" value="#{bundle.ViewProfessorcolaboradorDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewProfessorcolaboradorEditLink}"/>
+                <br />
+                <h:commandLink action="#{professorcolaboradorController.prepareCreate}" value="#{bundle.ViewProfessorcolaboradorCreateLink}" />
+                <br />
+                <h:commandLink action="#{professorcolaboradorController.prepareList}" value="#{bundle.ViewProfessorcolaboradorShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewProfessorcolaboradorIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

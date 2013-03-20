@@ -3,7 +3,7 @@ package Controle;
 import Entidade.Bolsista;
 import Controle.util.JsfUtil;
 import Controle.util.PaginationHelper;
-import Bean.BolsistaFacade;
+import Beans.BolsistaFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -25,7 +25,7 @@ public class BolsistaController implements Serializable {
     private Bolsista current;
     private DataModel items = null;
     @EJB
-    private Bean.BolsistaFacade ejbFacade;
+    private Beans.BolsistaFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 

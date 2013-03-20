@@ -3,7 +3,7 @@ package Controle;
 import Entidade.Sequence;
 import Controle.util.JsfUtil;
 import Controle.util.PaginationHelper;
-import Bean.SequenceFacade;
+import Beans.SequenceFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -25,7 +25,7 @@ public class SequenceController implements Serializable {
     private Sequence current;
     private DataModel items = null;
     @EJB
-    private Bean.SequenceFacade ejbFacade;
+    private Beans.SequenceFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 

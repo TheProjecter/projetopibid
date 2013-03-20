@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewAlunocolaboradorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewAlunocolaboradorLabel_id}"/>
+                    <h:outputText value="#{alunocolaboradorController.selected.id}" title="#{bundle.ViewAlunocolaboradorTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewAlunocolaboradorLabel_matricula}"/>
+                    <h:outputText value="#{alunocolaboradorController.selected.matricula}" title="#{bundle.ViewAlunocolaboradorTitle_matricula}"/>
+                    <h:outputText value="#{bundle.ViewAlunocolaboradorLabel_nome}"/>
+                    <h:outputText value="#{alunocolaboradorController.selected.nome}" title="#{bundle.ViewAlunocolaboradorTitle_nome}"/>
+                    <h:outputText value="#{bundle.ViewAlunocolaboradorLabel_email1}"/>
+                    <h:outputText value="#{alunocolaboradorController.selected.email1}" title="#{bundle.ViewAlunocolaboradorTitle_email1}"/>
+                    <h:outputText value="#{bundle.ViewAlunocolaboradorLabel_email2}"/>
+                    <h:outputText value="#{alunocolaboradorController.selected.email2}" title="#{bundle.ViewAlunocolaboradorTitle_email2}"/>
+                    <h:outputText value="#{bundle.ViewAlunocolaboradorLabel_tel}"/>
+                    <h:outputText value="#{alunocolaboradorController.selected.tel}" title="#{bundle.ViewAlunocolaboradorTitle_tel}"/>
+                    <h:outputText value="#{bundle.ViewAlunocolaboradorLabel_cel}"/>
+                    <h:outputText value="#{alunocolaboradorController.selected.cel}" title="#{bundle.ViewAlunocolaboradorTitle_cel}"/>
+                    <h:outputText value="#{bundle.ViewAlunocolaboradorLabel_endereco}"/>
+                    <h:outputText value="#{alunocolaboradorController.selected.endereco}" title="#{bundle.ViewAlunocolaboradorTitle_endereco}"/>
+                    <h:outputText value="#{bundle.ViewAlunocolaboradorLabel_tipoSituacaoid}"/>
+                    <h:outputText value="#{alunocolaboradorController.selected.tipoSituacaoid}" title="#{bundle.ViewAlunocolaboradorTitle_tipoSituacaoid}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{alunocolaboradorController.destroyAndView}" value="#{bundle.ViewAlunocolaboradorDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewAlunocolaboradorEditLink}"/>
+                <br />
+                <h:commandLink action="#{alunocolaboradorController.prepareCreate}" value="#{bundle.ViewAlunocolaboradorCreateLink}" />
+                <br />
+                <h:commandLink action="#{alunocolaboradorController.prepareList}" value="#{bundle.ViewAlunocolaboradorShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewAlunocolaboradorIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

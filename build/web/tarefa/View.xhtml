@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTarefaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTarefaLabel_id}"/>
+                    <h:outputText value="#{tarefaController.selected.id}" title="#{bundle.ViewTarefaTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewTarefaLabel_titulo}"/>
+                    <h:outputText value="#{tarefaController.selected.titulo}" title="#{bundle.ViewTarefaTitle_titulo}"/>
+                    <h:outputText value="#{bundle.ViewTarefaLabel_descricao}"/>
+                    <h:outputText value="#{tarefaController.selected.descricao}" title="#{bundle.ViewTarefaTitle_descricao}"/>
+                    <h:outputText value="#{bundle.ViewTarefaLabel_dataCadastro}"/>
+                    <h:outputText value="#{tarefaController.selected.dataCadastro}" title="#{bundle.ViewTarefaTitle_dataCadastro}"/>
+                    <h:outputText value="#{bundle.ViewTarefaLabel_dataPrevisaoInicio}"/>
+                    <h:outputText value="#{tarefaController.selected.dataPrevisaoInicio}" title="#{bundle.ViewTarefaTitle_dataPrevisaoInicio}"/>
+                    <h:outputText value="#{bundle.ViewTarefaLabel_dataPrecisaoConclusao}"/>
+                    <h:outputText value="#{tarefaController.selected.dataPrecisaoConclusao}" title="#{bundle.ViewTarefaTitle_dataPrecisaoConclusao}"/>
+                    <h:outputText value="#{bundle.ViewTarefaLabel_dataEfetivaConclusao}"/>
+                    <h:outputText value="#{tarefaController.selected.dataEfetivaConclusao}" title="#{bundle.ViewTarefaTitle_dataEfetivaConclusao}"/>
+                    <h:outputText value="#{bundle.ViewTarefaLabel_responsavel}"/>
+                    <h:outputText value="#{tarefaController.selected.responsavel}" title="#{bundle.ViewTarefaTitle_responsavel}"/>
+                    <h:outputText value="#{bundle.ViewTarefaLabel_observacao}"/>
+                    <h:outputText value="#{tarefaController.selected.observacao}" title="#{bundle.ViewTarefaTitle_observacao}"/>
+                    <h:outputText value="#{bundle.ViewTarefaLabel_tipoSituacaoid}"/>
+                    <h:outputText value="#{tarefaController.selected.tipoSituacaoid}" title="#{bundle.ViewTarefaTitle_tipoSituacaoid}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tarefaController.destroyAndView}" value="#{bundle.ViewTarefaDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTarefaEditLink}"/>
+                <br />
+                <h:commandLink action="#{tarefaController.prepareCreate}" value="#{bundle.ViewTarefaCreateLink}" />
+                <br />
+                <h:commandLink action="#{tarefaController.prepareList}" value="#{bundle.ViewTarefaShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTarefaIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

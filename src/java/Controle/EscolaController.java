@@ -3,7 +3,7 @@ package Controle;
 import Entidade.Escola;
 import Controle.util.JsfUtil;
 import Controle.util.PaginationHelper;
-import Bean.EscolaFacade;
+import Beans.EscolaFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -25,7 +25,7 @@ public class EscolaController implements Serializable {
     private Escola current;
     private DataModel items = null;
     @EJB
-    private Bean.EscolaFacade ejbFacade;
+    private Beans.EscolaFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 

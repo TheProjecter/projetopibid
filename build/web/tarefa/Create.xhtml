@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateTarefaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateTarefaLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{tarefaController.selected.id}" title="#{bundle.CreateTarefaTitle_id}" required="true" requiredMessage="#{bundle.CreateTarefaRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateTarefaLabel_titulo}" for="titulo" />
+                    <h:inputText id="titulo" value="#{tarefaController.selected.titulo}" title="#{bundle.CreateTarefaTitle_titulo}" />
+                    <h:outputLabel value="#{bundle.CreateTarefaLabel_descricao}" for="descricao" />
+                    <h:inputText id="descricao" value="#{tarefaController.selected.descricao}" title="#{bundle.CreateTarefaTitle_descricao}" />
+                    <h:outputLabel value="#{bundle.CreateTarefaLabel_dataCadastro}" for="dataCadastro" />
+                    <h:inputText id="dataCadastro" value="#{tarefaController.selected.dataCadastro}" title="#{bundle.CreateTarefaTitle_dataCadastro}" />
+                    <h:outputLabel value="#{bundle.CreateTarefaLabel_dataPrevisaoInicio}" for="dataPrevisaoInicio" />
+                    <h:inputText id="dataPrevisaoInicio" value="#{tarefaController.selected.dataPrevisaoInicio}" title="#{bundle.CreateTarefaTitle_dataPrevisaoInicio}" />
+                    <h:outputLabel value="#{bundle.CreateTarefaLabel_dataPrecisaoConclusao}" for="dataPrecisaoConclusao" />
+                    <h:inputText id="dataPrecisaoConclusao" value="#{tarefaController.selected.dataPrecisaoConclusao}" title="#{bundle.CreateTarefaTitle_dataPrecisaoConclusao}" />
+                    <h:outputLabel value="#{bundle.CreateTarefaLabel_dataEfetivaConclusao}" for="dataEfetivaConclusao" />
+                    <h:inputText id="dataEfetivaConclusao" value="#{tarefaController.selected.dataEfetivaConclusao}" title="#{bundle.CreateTarefaTitle_dataEfetivaConclusao}" />
+                    <h:outputLabel value="#{bundle.CreateTarefaLabel_responsavel}" for="responsavel" />
+                    <h:inputText id="responsavel" value="#{tarefaController.selected.responsavel}" title="#{bundle.CreateTarefaTitle_responsavel}" />
+                    <h:outputLabel value="#{bundle.CreateTarefaLabel_observacao}" for="observacao" />
+                    <h:inputText id="observacao" value="#{tarefaController.selected.observacao}" title="#{bundle.CreateTarefaTitle_observacao}" />
+                    <h:outputLabel value="#{bundle.CreateTarefaLabel_tipoSituacaoid}" for="tipoSituacaoid" />
+                    <h:selectOneMenu id="tipoSituacaoid" value="#{tarefaController.selected.tipoSituacaoid}" title="#{bundle.CreateTarefaTitle_tipoSituacaoid}" required="true" requiredMessage="#{bundle.CreateTarefaRequiredMessage_tipoSituacaoid}">
+                        <f:selectItems value="#{tiposituacaoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tarefaController.create}" value="#{bundle.CreateTarefaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{tarefaController.prepareList}" value="#{bundle.CreateTarefaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateTarefaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

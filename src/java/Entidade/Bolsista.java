@@ -7,17 +7,17 @@ package Entidade;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Marinho
+ * @author jp
  */
 @Entity
 @Table(name = "bolsista")
@@ -39,8 +39,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Bolsista.findByEmail2", query = "SELECT b FROM Bolsista b WHERE b.email2 = :email2"),
     @NamedQuery(name = "Bolsista.findByTel", query = "SELECT b FROM Bolsista b WHERE b.tel = :tel"),
     @NamedQuery(name = "Bolsista.findByCel", query = "SELECT b FROM Bolsista b WHERE b.cel = :cel"),
-    @NamedQuery(name = "Bolsista.findByEndereco", query = "SELECT b FROM Bolsista b WHERE b.endereco = :endereco"),
-    @NamedQuery(name = "Bolsista.findBySituacao", query = "SELECT b FROM Bolsista b WHERE b.situacao = :situacao")})
+    @NamedQuery(name = "Bolsista.findByEndereco", query = "SELECT b FROM Bolsista b WHERE b.endereco = :endereco")})
 public class Bolsista implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -69,10 +68,16 @@ public class Bolsista implements Serializable {
     @Size(max = 45)
     @Column(name = "endereco")
     private String endereco;
-    @Column(name = "situacao")
-    private Boolean situacao;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bolsista")
-    private Collection<BolsistaHasAtividade> bolsistaHasAtividadeCollection;
+    @ManyToMany(mappedBy = "bolsistaCollection")
+    private Collection<Tarefa> tarefaCollection;
+    @JoinTable(name = "bolsista_tarefa", joinColumns = {
+        @JoinColumn(name = "bolsista_id", referencedColumnName = "id")}, inverseJoinColumns = {
+        @JoinColumn(name = "tarefa_id", referencedColumnName = "id")})
+    @ManyToMany
+    private Collection<Tarefa> tarefaCollection1;
+    @JoinColumn(name = "TipoSituacao_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Tiposituacao tipoSituacaoid;
     @JoinColumn(name = "PROJETO_id", referencedColumnName = "id")
     @ManyToOne
     private Projeto pROJETOid;
@@ -148,21 +153,30 @@ public class Bolsista implements Serializable {
         this.endereco = endereco;
     }
 
-    public Boolean getSituacao() {
-        return situacao;
+    @XmlTransient
+    public Collection<Tarefa> getTarefaCollection() {
+        return tarefaCollection;
     }
 
-    public void setSituacao(Boolean situacao) {
-        this.situacao = situacao;
+    public void setTarefaCollection(Collection<Tarefa> tarefaCollection) {
+        this.tarefaCollection = tarefaCollection;
     }
 
     @XmlTransient
-    public Collection<BolsistaHasAtividade> getBolsistaHasAtividadeCollection() {
-        return bolsistaHasAtividadeCollection;
+    public Collection<Tarefa> getTarefaCollection1() {
+        return tarefaCollection1;
     }
 
-    public void setBolsistaHasAtividadeCollection(Collection<BolsistaHasAtividade> bolsistaHasAtividadeCollection) {
-        this.bolsistaHasAtividadeCollection = bolsistaHasAtividadeCollection;
+    public void setTarefaCollection1(Collection<Tarefa> tarefaCollection1) {
+        this.tarefaCollection1 = tarefaCollection1;
+    }
+
+    public Tiposituacao getTipoSituacaoid() {
+        return tipoSituacaoid;
+    }
+
+    public void setTipoSituacaoid(Tiposituacao tipoSituacaoid) {
+        this.tipoSituacaoid = tipoSituacaoid;
     }
 
     public Projeto getPROJETOid() {
