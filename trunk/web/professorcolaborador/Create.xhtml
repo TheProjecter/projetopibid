@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateProfessorcolaboradorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateProfessorcolaboradorLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{professorcolaboradorController.selected.id}" title="#{bundle.CreateProfessorcolaboradorTitle_id}" required="true" requiredMessage="#{bundle.CreateProfessorcolaboradorRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateProfessorcolaboradorLabel_nome}" for="nome" />
+                    <h:inputText id="nome" value="#{professorcolaboradorController.selected.nome}" title="#{bundle.CreateProfessorcolaboradorTitle_nome}" />
+                    <h:outputLabel value="#{bundle.CreateProfessorcolaboradorLabel_email1}" for="email1" />
+                    <h:inputText id="email1" value="#{professorcolaboradorController.selected.email1}" title="#{bundle.CreateProfessorcolaboradorTitle_email1}" />
+                    <h:outputLabel value="#{bundle.CreateProfessorcolaboradorLabel_email2}" for="email2" />
+                    <h:inputText id="email2" value="#{professorcolaboradorController.selected.email2}" title="#{bundle.CreateProfessorcolaboradorTitle_email2}" />
+                    <h:outputLabel value="#{bundle.CreateProfessorcolaboradorLabel_tel}" for="tel" />
+                    <h:inputText id="tel" value="#{professorcolaboradorController.selected.tel}" title="#{bundle.CreateProfessorcolaboradorTitle_tel}" />
+                    <h:outputLabel value="#{bundle.CreateProfessorcolaboradorLabel_cel}" for="cel" />
+                    <h:inputText id="cel" value="#{professorcolaboradorController.selected.cel}" title="#{bundle.CreateProfessorcolaboradorTitle_cel}" />
+                    <h:outputLabel value="#{bundle.CreateProfessorcolaboradorLabel_endereco}" for="endereco" />
+                    <h:inputText id="endereco" value="#{professorcolaboradorController.selected.endereco}" title="#{bundle.CreateProfessorcolaboradorTitle_endereco}" />
+                    <h:outputLabel value="#{bundle.CreateProfessorcolaboradorLabel_instituicao}" for="instituicao" />
+                    <h:inputText id="instituicao" value="#{professorcolaboradorController.selected.instituicao}" title="#{bundle.CreateProfessorcolaboradorTitle_instituicao}" />
+                    <h:outputLabel value="#{bundle.CreateProfessorcolaboradorLabel_tipoSituacaoid}" for="tipoSituacaoid" />
+                    <h:selectOneMenu id="tipoSituacaoid" value="#{professorcolaboradorController.selected.tipoSituacaoid}" title="#{bundle.CreateProfessorcolaboradorTitle_tipoSituacaoid}" required="true" requiredMessage="#{bundle.CreateProfessorcolaboradorRequiredMessage_tipoSituacaoid}">
+                        <f:selectItems value="#{tiposituacaoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{professorcolaboradorController.create}" value="#{bundle.CreateProfessorcolaboradorSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{professorcolaboradorController.prepareList}" value="#{bundle.CreateProfessorcolaboradorShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateProfessorcolaboradorIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

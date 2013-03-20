@@ -3,7 +3,7 @@ package Controle;
 import Entidade.Coordenador;
 import Controle.util.JsfUtil;
 import Controle.util.PaginationHelper;
-import Bean.CoordenadorFacade;
+import Beans.CoordenadorFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -25,7 +25,7 @@ public class CoordenadorController implements Serializable {
     private Coordenador current;
     private DataModel items = null;
     @EJB
-    private Bean.CoordenadorFacade ejbFacade;
+    private Beans.CoordenadorFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 

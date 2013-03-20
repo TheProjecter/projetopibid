@@ -14,6 +14,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -25,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Marinho
+ * @author jp
  */
 @Entity
 @Table(name = "projeto")
@@ -40,10 +42,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Projeto.findByCursoVinculado", query = "SELECT p FROM Projeto p WHERE p.cursoVinculado = :cursoVinculado"),
     @NamedQuery(name = "Projeto.findByAcaoPrevista", query = "SELECT p FROM Projeto p WHERE p.acaoPrevista = :acaoPrevista"),
     @NamedQuery(name = "Projeto.findByResultadoPretendido", query = "SELECT p FROM Projeto p WHERE p.resultadoPretendido = :resultadoPretendido"),
-    @NamedQuery(name = "Projeto.findByAtividade", query = "SELECT p FROM Projeto p WHERE p.atividade = :atividade"),
-    @NamedQuery(name = "Projeto.findByMesInicio", query = "SELECT p FROM Projeto p WHERE p.mesInicio = :mesInicio"),
-    @NamedQuery(name = "Projeto.findByMesFinal", query = "SELECT p FROM Projeto p WHERE p.mesFinal = :mesFinal"),
-    @NamedQuery(name = "Projeto.findBySituacao", query = "SELECT p FROM Projeto p WHERE p.situacao = :situacao"),
     @NamedQuery(name = "Projeto.findByProposta", query = "SELECT p FROM Projeto p WHERE p.proposta = :proposta")})
 public class Projeto implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -74,28 +72,25 @@ public class Projeto implements Serializable {
     @Column(name = "ResultadoPretendido")
     private String resultadoPretendido;
     @Size(max = 45)
-    @Column(name = "atividade")
-    private String atividade;
-    @Size(max = 45)
-    @Column(name = "mesInicio")
-    private String mesInicio;
-    @Size(max = 45)
-    @Column(name = "MesFinal")
-    private String mesFinal;
-    @Column(name = "situacao")
-    private Boolean situacao;
-    @Size(max = 45)
     @Column(name = "proposta")
     private String proposta;
+    @JoinTable(name = "projeto_alunocolaborador", joinColumns = {
+        @JoinColumn(name = "PROJETO_id", referencedColumnName = "id")}, inverseJoinColumns = {
+        @JoinColumn(name = "AlunoColaborador_id", referencedColumnName = "id")})
+    @ManyToMany
+    private Collection<Alunocolaborador> alunocolaboradorCollection;
+    @ManyToMany(mappedBy = "projetoCollection")
+    private Collection<Professorcolaborador> professorcolaboradorCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "projetoId")
+    private Collection<Atividadeprojeto> atividadeprojetoCollection;
+    @OneToMany(mappedBy = "pROJETOid")
+    private Collection<Bolsista> bolsistaCollection;
+    @JoinColumn(name = "TipoSituacao_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Tiposituacao tipoSituacaoid;
     @JoinColumn(name = "COORDENADOR_id", referencedColumnName = "id")
     @ManyToOne
     private Coordenador cOORDENADORid;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "projeto")
-    private Collection<ProjetoHasProfessorcolaborador> projetoHasProfessorcolaboradorCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "projeto")
-    private Collection<ProjetoHasAlunocolaborador> projetoHasAlunocolaboradorCollection;
-    @OneToMany(mappedBy = "pROJETOid")
-    private Collection<Bolsista> bolsistaCollection;
     @OneToMany(mappedBy = "pROJETOid")
     private Collection<Supervisor> supervisorCollection;
 
@@ -170,38 +165,6 @@ public class Projeto implements Serializable {
         this.resultadoPretendido = resultadoPretendido;
     }
 
-    public String getAtividade() {
-        return atividade;
-    }
-
-    public void setAtividade(String atividade) {
-        this.atividade = atividade;
-    }
-
-    public String getMesInicio() {
-        return mesInicio;
-    }
-
-    public void setMesInicio(String mesInicio) {
-        this.mesInicio = mesInicio;
-    }
-
-    public String getMesFinal() {
-        return mesFinal;
-    }
-
-    public void setMesFinal(String mesFinal) {
-        this.mesFinal = mesFinal;
-    }
-
-    public Boolean getSituacao() {
-        return situacao;
-    }
-
-    public void setSituacao(Boolean situacao) {
-        this.situacao = situacao;
-    }
-
     public String getProposta() {
         return proposta;
     }
@@ -210,30 +173,31 @@ public class Projeto implements Serializable {
         this.proposta = proposta;
     }
 
-    public Coordenador getCOORDENADORid() {
-        return cOORDENADORid;
+    @XmlTransient
+    public Collection<Alunocolaborador> getAlunocolaboradorCollection() {
+        return alunocolaboradorCollection;
     }
 
-    public void setCOORDENADORid(Coordenador cOORDENADORid) {
-        this.cOORDENADORid = cOORDENADORid;
+    public void setAlunocolaboradorCollection(Collection<Alunocolaborador> alunocolaboradorCollection) {
+        this.alunocolaboradorCollection = alunocolaboradorCollection;
     }
 
     @XmlTransient
-    public Collection<ProjetoHasProfessorcolaborador> getProjetoHasProfessorcolaboradorCollection() {
-        return projetoHasProfessorcolaboradorCollection;
+    public Collection<Professorcolaborador> getProfessorcolaboradorCollection() {
+        return professorcolaboradorCollection;
     }
 
-    public void setProjetoHasProfessorcolaboradorCollection(Collection<ProjetoHasProfessorcolaborador> projetoHasProfessorcolaboradorCollection) {
-        this.projetoHasProfessorcolaboradorCollection = projetoHasProfessorcolaboradorCollection;
+    public void setProfessorcolaboradorCollection(Collection<Professorcolaborador> professorcolaboradorCollection) {
+        this.professorcolaboradorCollection = professorcolaboradorCollection;
     }
 
     @XmlTransient
-    public Collection<ProjetoHasAlunocolaborador> getProjetoHasAlunocolaboradorCollection() {
-        return projetoHasAlunocolaboradorCollection;
+    public Collection<Atividadeprojeto> getAtividadeprojetoCollection() {
+        return atividadeprojetoCollection;
     }
 
-    public void setProjetoHasAlunocolaboradorCollection(Collection<ProjetoHasAlunocolaborador> projetoHasAlunocolaboradorCollection) {
-        this.projetoHasAlunocolaboradorCollection = projetoHasAlunocolaboradorCollection;
+    public void setAtividadeprojetoCollection(Collection<Atividadeprojeto> atividadeprojetoCollection) {
+        this.atividadeprojetoCollection = atividadeprojetoCollection;
     }
 
     @XmlTransient
@@ -243,6 +207,22 @@ public class Projeto implements Serializable {
 
     public void setBolsistaCollection(Collection<Bolsista> bolsistaCollection) {
         this.bolsistaCollection = bolsistaCollection;
+    }
+
+    public Tiposituacao getTipoSituacaoid() {
+        return tipoSituacaoid;
+    }
+
+    public void setTipoSituacaoid(Tiposituacao tipoSituacaoid) {
+        this.tipoSituacaoid = tipoSituacaoid;
+    }
+
+    public Coordenador getCOORDENADORid() {
+        return cOORDENADORid;
+    }
+
+    public void setCOORDENADORid(Coordenador cOORDENADORid) {
+        this.cOORDENADORid = cOORDENADORid;
     }
 
     @XmlTransient
@@ -276,7 +256,7 @@ public class Projeto implements Serializable {
 
     @Override
     public String toString() {
-        return getTitulo();
+        return "Entidade.Projeto[ id=" + id + " ]";
     }
     
 }

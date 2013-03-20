@@ -7,6 +7,7 @@ package Entidade;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Marinho
+ * @author jp
  */
 @Entity
 @Table(name = "coordenador")
@@ -63,6 +64,8 @@ public class Coordenador implements Serializable {
     private String link;
     @OneToMany(mappedBy = "cOORDENADORid")
     private Collection<Projeto> projetoCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "coordenadorId")
+    private Collection<Login> loginCollection;
 
     public Coordenador() {
     }
@@ -134,6 +137,15 @@ public class Coordenador implements Serializable {
 
     public void setProjetoCollection(Collection<Projeto> projetoCollection) {
         this.projetoCollection = projetoCollection;
+    }
+
+    @XmlTransient
+    public Collection<Login> getLoginCollection() {
+        return loginCollection;
+    }
+
+    public void setLoginCollection(Collection<Login> loginCollection) {
+        this.loginCollection = loginCollection;
     }
 
     @Override

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListBolsistaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListBolsistaEmpty}" rendered="#{bolsistaController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{bolsistaController.items.rowCount > 0}">
+                    <h:outputText value="#{bolsistaController.pagination.pageFirstItem + 1}..#{bolsistaController.pagination.pageLastItem + 1}/#{bolsistaController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{bolsistaController.previous}" value="#{bundle.Previous} #{bolsistaController.pagination.pageSize}" rendered="#{bolsistaController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{bolsistaController.next}" value="#{bundle.Next} #{bolsistaController.pagination.pageSize}" rendered="#{bolsistaController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{bolsistaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBolsistaTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBolsistaTitle_matricula}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.matricula}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBolsistaTitle_nome}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nome}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBolsistaTitle_email1}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.email1}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBolsistaTitle_email2}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.email2}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBolsistaTitle_tel}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tel}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBolsistaTitle_cel}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cel}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBolsistaTitle_endereco}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.endereco}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBolsistaTitle_tipoSituacaoid}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoSituacaoid}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBolsistaTitle_PROJETOid}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.PROJETOid}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{bolsistaController.prepareView}" value="#{bundle.ListBolsistaViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{bolsistaController.prepareEdit}" value="#{bundle.ListBolsistaEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{bolsistaController.destroy}" value="#{bundle.ListBolsistaDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{bolsistaController.prepareCreate}" value="#{bundle.ListBolsistaCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListBolsistaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

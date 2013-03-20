@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListAtividadeprojetoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListAtividadeprojetoEmpty}" rendered="#{atividadeprojetoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{atividadeprojetoController.items.rowCount > 0}">
+                    <h:outputText value="#{atividadeprojetoController.pagination.pageFirstItem + 1}..#{atividadeprojetoController.pagination.pageLastItem + 1}/#{atividadeprojetoController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{atividadeprojetoController.previous}" value="#{bundle.Previous} #{atividadeprojetoController.pagination.pageSize}" rendered="#{atividadeprojetoController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{atividadeprojetoController.next}" value="#{bundle.Next} #{atividadeprojetoController.pagination.pageSize}" rendered="#{atividadeprojetoController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{atividadeprojetoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAtividadeprojetoTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAtividadeprojetoTitle_atividade}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.atividade}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAtividadeprojetoTitle_mesInicio}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.mesInicio}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAtividadeprojetoTitle_mesFinal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.mesFinal}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAtividadeprojetoTitle_projetoId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.projetoId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{atividadeprojetoController.prepareView}" value="#{bundle.ListAtividadeprojetoViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{atividadeprojetoController.prepareEdit}" value="#{bundle.ListAtividadeprojetoEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{atividadeprojetoController.destroy}" value="#{bundle.ListAtividadeprojetoDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{atividadeprojetoController.prepareCreate}" value="#{bundle.ListAtividadeprojetoCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListAtividadeprojetoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

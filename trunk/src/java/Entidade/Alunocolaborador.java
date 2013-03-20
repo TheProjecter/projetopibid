@@ -7,15 +7,17 @@ package Entidade;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -23,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Marinho
+ * @author jp
  */
 @Entity
 @Table(name = "alunocolaborador")
@@ -37,8 +39,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Alunocolaborador.findByEmail2", query = "SELECT a FROM Alunocolaborador a WHERE a.email2 = :email2"),
     @NamedQuery(name = "Alunocolaborador.findByTel", query = "SELECT a FROM Alunocolaborador a WHERE a.tel = :tel"),
     @NamedQuery(name = "Alunocolaborador.findByCel", query = "SELECT a FROM Alunocolaborador a WHERE a.cel = :cel"),
-    @NamedQuery(name = "Alunocolaborador.findByEndereco", query = "SELECT a FROM Alunocolaborador a WHERE a.endereco = :endereco"),
-    @NamedQuery(name = "Alunocolaborador.findBySituacao", query = "SELECT a FROM Alunocolaborador a WHERE a.situacao = :situacao")})
+    @NamedQuery(name = "Alunocolaborador.findByEndereco", query = "SELECT a FROM Alunocolaborador a WHERE a.endereco = :endereco")})
 public class Alunocolaborador implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -67,12 +68,21 @@ public class Alunocolaborador implements Serializable {
     @Size(max = 45)
     @Column(name = "endereco")
     private String endereco;
-    @Column(name = "situacao")
-    private Boolean situacao;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "alunocolaborador")
-    private Collection<AlunocolaboradorHasAtividade> alunocolaboradorHasAtividadeCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "alunocolaborador")
-    private Collection<ProjetoHasAlunocolaborador> projetoHasAlunocolaboradorCollection;
+    @JoinTable(name = "alunocolaborador_tarefa", joinColumns = {
+        @JoinColumn(name = "alunocolaborador_id", referencedColumnName = "id")}, inverseJoinColumns = {
+        @JoinColumn(name = "tarefa_id", referencedColumnName = "id")})
+    @ManyToMany
+    private Collection<Tarefa> tarefaCollection;
+    @ManyToMany(mappedBy = "alunocolaboradorCollection")
+    private Collection<Projeto> projetoCollection;
+    @JoinTable(name = "alunocolaborador_atividade", joinColumns = {
+        @JoinColumn(name = "AlunoColaborador_id", referencedColumnName = "id")}, inverseJoinColumns = {
+        @JoinColumn(name = "ATIVIDADE_id", referencedColumnName = "id")})
+    @ManyToMany
+    private Collection<Tarefa> tarefaCollection1;
+    @JoinColumn(name = "TipoSituacao_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Tiposituacao tipoSituacaoid;
 
     public Alunocolaborador() {
     }
@@ -145,30 +155,39 @@ public class Alunocolaborador implements Serializable {
         this.endereco = endereco;
     }
 
-    public Boolean getSituacao() {
-        return situacao;
+    @XmlTransient
+    public Collection<Tarefa> getTarefaCollection() {
+        return tarefaCollection;
     }
 
-    public void setSituacao(Boolean situacao) {
-        this.situacao = situacao;
+    public void setTarefaCollection(Collection<Tarefa> tarefaCollection) {
+        this.tarefaCollection = tarefaCollection;
     }
 
     @XmlTransient
-    public Collection<AlunocolaboradorHasAtividade> getAlunocolaboradorHasAtividadeCollection() {
-        return alunocolaboradorHasAtividadeCollection;
+    public Collection<Projeto> getProjetoCollection() {
+        return projetoCollection;
     }
 
-    public void setAlunocolaboradorHasAtividadeCollection(Collection<AlunocolaboradorHasAtividade> alunocolaboradorHasAtividadeCollection) {
-        this.alunocolaboradorHasAtividadeCollection = alunocolaboradorHasAtividadeCollection;
+    public void setProjetoCollection(Collection<Projeto> projetoCollection) {
+        this.projetoCollection = projetoCollection;
     }
 
     @XmlTransient
-    public Collection<ProjetoHasAlunocolaborador> getProjetoHasAlunocolaboradorCollection() {
-        return projetoHasAlunocolaboradorCollection;
+    public Collection<Tarefa> getTarefaCollection1() {
+        return tarefaCollection1;
     }
 
-    public void setProjetoHasAlunocolaboradorCollection(Collection<ProjetoHasAlunocolaborador> projetoHasAlunocolaboradorCollection) {
-        this.projetoHasAlunocolaboradorCollection = projetoHasAlunocolaboradorCollection;
+    public void setTarefaCollection1(Collection<Tarefa> tarefaCollection1) {
+        this.tarefaCollection1 = tarefaCollection1;
+    }
+
+    public Tiposituacao getTipoSituacaoid() {
+        return tipoSituacaoid;
+    }
+
+    public void setTipoSituacaoid(Tiposituacao tipoSituacaoid) {
+        this.tipoSituacaoid = tipoSituacaoid;
     }
 
     @Override

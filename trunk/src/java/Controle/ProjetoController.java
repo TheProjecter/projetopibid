@@ -3,7 +3,7 @@ package Controle;
 import Entidade.Projeto;
 import Controle.util.JsfUtil;
 import Controle.util.PaginationHelper;
-import Bean.ProjetoFacade;
+import Beans.ProjetoFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -25,7 +25,7 @@ public class ProjetoController implements Serializable {
     private Projeto current;
     private DataModel items = null;
     @EJB
-    private Bean.ProjetoFacade ejbFacade;
+    private Beans.ProjetoFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 

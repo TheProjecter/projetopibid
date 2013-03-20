@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateBolsistaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateBolsistaLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{bolsistaController.selected.id}" title="#{bundle.CreateBolsistaTitle_id}" required="true" requiredMessage="#{bundle.CreateBolsistaRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateBolsistaLabel_matricula}" for="matricula" />
+                    <h:inputText id="matricula" value="#{bolsistaController.selected.matricula}" title="#{bundle.CreateBolsistaTitle_matricula}" />
+                    <h:outputLabel value="#{bundle.CreateBolsistaLabel_nome}" for="nome" />
+                    <h:inputText id="nome" value="#{bolsistaController.selected.nome}" title="#{bundle.CreateBolsistaTitle_nome}" />
+                    <h:outputLabel value="#{bundle.CreateBolsistaLabel_email1}" for="email1" />
+                    <h:inputText id="email1" value="#{bolsistaController.selected.email1}" title="#{bundle.CreateBolsistaTitle_email1}" />
+                    <h:outputLabel value="#{bundle.CreateBolsistaLabel_email2}" for="email2" />
+                    <h:inputText id="email2" value="#{bolsistaController.selected.email2}" title="#{bundle.CreateBolsistaTitle_email2}" />
+                    <h:outputLabel value="#{bundle.CreateBolsistaLabel_tel}" for="tel" />
+                    <h:inputText id="tel" value="#{bolsistaController.selected.tel}" title="#{bundle.CreateBolsistaTitle_tel}" />
+                    <h:outputLabel value="#{bundle.CreateBolsistaLabel_cel}" for="cel" />
+                    <h:inputText id="cel" value="#{bolsistaController.selected.cel}" title="#{bundle.CreateBolsistaTitle_cel}" />
+                    <h:outputLabel value="#{bundle.CreateBolsistaLabel_endereco}" for="endereco" />
+                    <h:inputText id="endereco" value="#{bolsistaController.selected.endereco}" title="#{bundle.CreateBolsistaTitle_endereco}" />
+                    <h:outputLabel value="#{bundle.CreateBolsistaLabel_tipoSituacaoid}" for="tipoSituacaoid" />
+                    <h:selectOneMenu id="tipoSituacaoid" value="#{bolsistaController.selected.tipoSituacaoid}" title="#{bundle.CreateBolsistaTitle_tipoSituacaoid}" required="true" requiredMessage="#{bundle.CreateBolsistaRequiredMessage_tipoSituacaoid}">
+                        <f:selectItems value="#{tiposituacaoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateBolsistaLabel_PROJETOid}" for="PROJETOid" />
+                    <h:selectOneMenu id="PROJETOid" value="#{bolsistaController.selected.PROJETOid}" title="#{bundle.CreateBolsistaTitle_PROJETOid}" >
+                        <f:selectItems value="#{projetoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{bolsistaController.create}" value="#{bundle.CreateBolsistaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{bolsistaController.prepareList}" value="#{bundle.CreateBolsistaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateBolsistaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
