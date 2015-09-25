@@ -1,0 +1,3 @@
+O Pibid é uma iniciativa para o aperfeiçoamento e a valorização da formação de professores para a educação básica.
+O programa concede bolsas a alunos de licenciatura participantes de projetos de iniciação à docência desenvolvidos por Instituições de Educação Superior (IES) em parceria com escolas de educação básica da rede pública de ensino.
+Os projetos devem promover a inserção dos estudantes no contexto das escolas públicas desde o início da sua formação acadêmica para que desenvolvam atividades didático-pedagógicas sob orientação de um docente da licenciatura e de um professor da escola.
